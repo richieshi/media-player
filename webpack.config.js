@@ -26,12 +26,12 @@ module.exports = {
         extensions: ['', '.js']
     },
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, '/'),
         publicPath: '/',
         filename: 'bundle.js'
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: './',
         hot: true
     },
     plugins: [
