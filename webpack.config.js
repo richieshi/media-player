@@ -3,17 +3,16 @@ var path = require('path');
 
 module.exports = {
     entry: [
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
         './src/react/index.js'
     ],
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015']
-                }
+                loaders: ['react-hot', 'babel'],
+                exclude: /node_modules/
             },
             {
                 test: /\.scss$/,
@@ -26,17 +25,12 @@ module.exports = {
         extensions: ['', '.js']
     },
     output: {
-        path: path.join(__dirname, '/'),
-        publicPath: '/',
-        filename: 'bundle.js'
-    },
-    devServer: {
-        contentBase: './',
-        hot: true
+        path: path.join(__dirname, 'dist'),
+        publicPath: 'http://localhost:8080/dist/',
+        filename: 'bundle.js',
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ],
     sassLoader: {
