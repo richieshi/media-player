@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import Actions from '../actions/Actions.js';
 import FontAwesome from 'react-fontawesome';
 
 class MusicControls extends React.Component {
@@ -25,6 +27,7 @@ class MusicControls extends React.Component {
     }
 
     render() {
+        console.log(this.props.isPlaying);
         let playBtn = ( 
             <div
                 id='control-btn'
@@ -68,4 +71,27 @@ class MusicControls extends React.Component {
     }
 }
 
-export default MusicControls;
+MusicControls.contextTypes = {
+    isPlaying: React.PropTypes.bool
+};
+
+const mapStateToProps = (state) => {
+    return {
+        isPlaying: state.isPlaying
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onPlay: () => {
+            dispatch(Actions.setPlayCurrentSong(true));
+        }
+    }
+};
+
+const MusicControlsContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MusicControls);
+
+export default MusicControlsContainer;

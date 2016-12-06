@@ -1,13 +1,15 @@
 import React from 'react';
 import YoutubeMusicPlayer from './YoutubeMusicPlayer.jsx';
-import MusicControls from './MusicControls.jsx';
+import MusicControlsContainer from './MusicControls.jsx';
 
 class YoutubeMusic extends React.Component {
 
     render() {
         return (
             <div>
-                <MusicControls />
+                <YoutubeMusicPlayer
+                    videoId='R8_Ie1eHbxs' />
+                <MusicControlsContainer />
             </div>
         );
     }
