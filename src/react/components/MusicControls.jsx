@@ -5,33 +5,13 @@ import FontAwesome from 'react-fontawesome';
 
 class MusicControls extends React.Component {
 
-    constructor() {
-        super();
-        this.state = ({
-            isPlaying: false
-        });
-        this._onPlay = this._onPlay.bind(this);
-        this._onPause = this._onPause.bind(this);
-    }
-
-    _onPlay() {
-        this.setState({
-            isPlaying: true
-        });
-    }
-
-    _onPause() {
-        this.setState({
-            isPlaying: false
-        });
-    }
-
     render() {
-        console.log(this.props.isPlaying);
+        const { isPlaying, onPlay, onPause } = this.props;
+
         let playBtn = ( 
             <div
                 id='control-btn'
-                onClick={this._onPlay}>
+                onClick={onPlay}>
                 <FontAwesome
                     name='play-circle-o'
                     size='5x' />
@@ -40,7 +20,7 @@ class MusicControls extends React.Component {
         let pauseBtn = (
             <div
                 id='control-btn'
-                onClick={this._onPause}>
+                onClick={onPause}>
                 <FontAwesome
                     name='pause-circle-o'
                     size='5x' />
@@ -64,15 +44,18 @@ class MusicControls extends React.Component {
         return (
             <div id='music-controls'>
                 {prevBtn}
-                {this.state.isPlaying ? pauseBtn : playBtn}
+                {isPlaying ? pauseBtn : playBtn}
                 {nextBtn}
             </div>
         );
     }
 }
 
-MusicControls.contextTypes = {
-    isPlaying: React.PropTypes.bool
+MusicControls.propTypes = {
+    // store's state and dispatches
+    isPlaying: React.PropTypes.bool.isRequired,
+    onPlay: React.PropTypes.func.isRequired,
+    onPause: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -85,13 +68,16 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onPlay: () => {
             dispatch(Actions.setPlayCurrentSong(true));
+        },
+        onPause: () => {
+            dispatch(Actions.setPlayCurrentSong(false));
         }
     }
 };
 
-const MusicControlsContainer = connect(
+MusicControls = connect(
     mapStateToProps,
     mapDispatchToProps
 )(MusicControls);
 
-export default MusicControlsContainer;
+export default MusicControls;

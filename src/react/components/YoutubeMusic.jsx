@@ -1,6 +1,6 @@
 import React from 'react';
 import YoutubeMusicPlayer from './YoutubeMusicPlayer.jsx';
-import MusicControlsContainer from './MusicControls.jsx';
+import MusicControls from './MusicControls.jsx';
 
 class YoutubeMusic extends React.Component {
 
@@ -8,8 +8,8 @@ class YoutubeMusic extends React.Component {
         return (
             <div>
                 <YoutubeMusicPlayer
-                    videoId='R8_Ie1eHbxs' />
-                <MusicControlsContainer />
+                    videoId='pcKR0LPwoYs' />
+                <MusicControls />
             </div>
         );
     }
