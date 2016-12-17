@@ -1,14 +1,4 @@
-#music-controls {
-    display: flex;
-    height: 60px;
-
-    #control-btn {
-        display: inline-flex;
-        margin-right: 20px;
-        cursor: pointer;
-
-        span {
-            line-height: 60px;
-        }
-    }
+.youtube-music {
+    height: 100%;
+    overflow-y: auto;
 }

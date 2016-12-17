@@ -1,0 +1,18 @@
+#main-app {
+    height: 100%;
+
+    .controls-container {
+        position: fixed;
+        padding: 30px 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 2px solid black;
+        height: 80px;
+    }
+
+    .playlist {
+        position: relative;
+        height: 590px;
+        width: 100%;
+    }
+}

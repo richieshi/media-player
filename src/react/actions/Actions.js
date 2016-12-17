@@ -1,6 +1,12 @@
 import ActionNames from './ActionNames.js';
 
 export default {
+    init: () => {
+        return {
+            type: ActionNames.INIT
+        }
+    },
+
     setPlayCurrentSong: ( isPlaying ) => {
         return {
             type: ActionNames.SET_PLAY_CURRENT,

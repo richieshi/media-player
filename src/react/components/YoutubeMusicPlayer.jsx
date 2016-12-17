@@ -31,7 +31,7 @@ class YoutubeMusicPlayer extends React.Component {
         let { videoId, opts } = this.props;
 
         return (
-            <div className='youtube-music'>
+            <div className='youtube-music-player'>
                 <Youtube
                     ref='musicPlayer'
                     videoId={videoId}

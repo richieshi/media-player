@@ -1,0 +1,17 @@
+#music-controls {
+    width: 225px;
+    margin: 0 auto;
+    display: flex;
+    height: 60px;
+    box-sizing: content-box;
+
+    #control-btn {
+        display: inline-flex;
+        margin-right: 50px;
+        cursor: pointer;
+
+        span {
+            line-height: 60px;
+        }
+    }
+}
