@@ -23,8 +23,12 @@ const controls = (state, action) => {
         }
 
         case ActionNames.PLAY_PREV: {
+            let index = state.currentIndex - 1;
+            if (index === -1) {
+                index = state.playlist.length - 1;
+            }
             return Object.assign({}, state, {
-                currentIndex: (state.currentIndex - 1) % state.playlist.length
+                currentIndex: index
             });
         }
 

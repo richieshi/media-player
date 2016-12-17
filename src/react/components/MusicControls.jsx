@@ -3,7 +3,40 @@ import { connect } from 'react-redux';
 import Actions from '../actions/Actions.js';
 import FontAwesome from 'react-fontawesome';
 
+const Key = {
+    SPACE: 32,
+    n_KEY: 110,
+    p_KEY: 112
+}
+
 class MusicControls extends React.Component {
+
+    constructor() {
+        super();
+        this._togglePlay = this._togglePlay.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener('keypress', this._togglePlay);
+    }
+
+    componentWillUnmount() {
+        document.addEventListener('keypress', this._togglePlay);
+    }
+
+    _togglePlay(event) {
+        if (event.keyCode === Key.SPACE) {
+            if (this.props.isPlaying) {
+                this.props.onPause();
+            } else {
+                this.props.onPlay();
+            }
+        } else if (event.keyCode === Key.n_KEY) {
+            this.props.playNext();
+        } else if (event.keyCode === Key.p_KEY) {
+            this.props.playPrev();
+        }
+    }
 
     render() {
         const { isPlaying, onPlay, onPause, playNext, playPrev } = this.props;
