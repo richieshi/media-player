@@ -6,7 +6,7 @@ import FontAwesome from 'react-fontawesome';
 class MusicControls extends React.Component {
 
     render() {
-        const { isPlaying, onPlay, onPause } = this.props;
+        const { isPlaying, onPlay, onPause, playNext, playPrev } = this.props;
 
         let playBtn = ( 
             <div
@@ -27,14 +27,18 @@ class MusicControls extends React.Component {
             </div>
         );
         let nextBtn = (
-            <div id='control-btn'>
+            <div
+                id='control-btn'
+                onClick={playNext}>
                 <FontAwesome
                     name='step-forward'
                     size='3x' />
             </div>
         );
         let prevBtn = (
-            <div id='control-btn'>
+            <div
+                id='control-btn'
+                onClick={playPrev}>
                 <FontAwesome
                     name='step-backward'
                     size='3x' />
@@ -51,13 +55,6 @@ class MusicControls extends React.Component {
     }
 }
 
-MusicControls.propTypes = {
-    // store's state and dispatches
-    isPlaying: React.PropTypes.bool.isRequired,
-    onPlay: React.PropTypes.func.isRequired,
-    onPause: React.PropTypes.func.isRequired
-};
-
 const mapStateToProps = (state) => {
     return {
         isPlaying: state.isPlaying
@@ -71,6 +68,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         onPause: () => {
             dispatch(Actions.setPlayCurrentSong(false));
+        },
+        playNext: () => {
+            dispatch(Actions.playNext());
+        },
+        playPrev: () => {
+            dispatch(Actions.playPrev());
         }
     }
 };

@@ -7,7 +7,8 @@ import Controls from './reducers/Controls.js';
 
 require('./index.scss')
 let store = createStore(Controls, {
-    isPlaying: false
+    isPlaying: false,
+    playlist: ['pcKR0LPwoYs', '--zku6TB5NY', 'RwFi7wnH5W0']
 });
 
 render(

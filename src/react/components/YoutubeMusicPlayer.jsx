@@ -1,12 +1,13 @@
 import React from 'react';
 import Youtube from 'react-youtube';
 import { connect } from 'react-redux';
+import Actions from '../actions/Actions.js';
 
 class YoutubeMusicPlayer extends React.Component {
 
     constructor() {
         super();
-        this._onReady = this._onReady.bind(this);
+        this._onEnd = this._onEnd.bind(this);
     }
 
     componentDidUpdate() {
@@ -22,6 +23,10 @@ class YoutubeMusicPlayer extends React.Component {
         event.target.pauseVideo();
     }
 
+    _onEnd() {
+        this.props.playNext();
+    }
+
     render() {
         let { videoId, opts } = this.props;
 
@@ -31,7 +36,8 @@ class YoutubeMusicPlayer extends React.Component {
                     ref='musicPlayer'
                     videoId={videoId}
                     opts={opts}
-                    onReady={this._onReady} />
+                    onReady={this._onReady}
+                    onEnd={this._onEnd} />
             </div>
         ); 
     }
@@ -39,17 +45,23 @@ class YoutubeMusicPlayer extends React.Component {
 
 YoutubeMusicPlayer.propTypes = {
     videoId: React.PropTypes.string.isRequired,
-    opts: React.PropTypes.object,
-    // store's state
-    isPlaying: React.PropTypes.bool.isRequired
+    opts: React.PropTypes.object
 };
 
 const mapStateToProps = (state) => {
     return {
         isPlaying: state.isPlaying
-    }
+    };
 };
 
-YoutubeMusicPlayer = connect(mapStateToProps)(YoutubeMusicPlayer)
+const mapDispatchToStore = (dispatch) => {
+    return {
+        playNext: () => {
+            dispatch(Actions.playNext())
+        }
+    };
+};
+
+YoutubeMusicPlayer = connect(mapStateToProps, mapDispatchToStore)(YoutubeMusicPlayer)
 
 export default YoutubeMusicPlayer;

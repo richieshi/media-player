@@ -6,6 +6,27 @@ const controls = (state, action) => {
             return Object.assign({}, state, {
                 isPlaying: action.isPlaying
             });
+
+        case ActionNames.PLAY_NEXT: {
+            let curSong = state.playlist[0];
+            let newPlaylist = state.playlist.slice(1);
+            newPlaylist = newPlaylist.concat(curSong);                   
+            return Object.assign({}, state, {
+                playlist: newPlaylist
+            });
+        }
+
+        case ActionNames.PLAY_PREV: {
+            let playlist = state.playlist;
+            let lastIndex = playlist.length - 1;
+            let nextSong = playlist[lastIndex];
+            let newPlaylist = playlist.slice(0, lastIndex);
+            newPlaylist.unshift(nextSong);
+            return Object.assign({}, state, {
+                playlist: newPlaylist
+            });
+        }
+
         default:
             return state;
     }
