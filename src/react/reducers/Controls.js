@@ -39,6 +39,13 @@ export const playlistSettings = (state = initialPlaylistSettings, action) => {
             };
         }
 
+        case ActionNames.ADD_NEW_SONG: {
+            return {
+                currentIndex: state.currentIndex,
+                queuedMusic: state.queuedMusic.concat(action.videoId)
+            }
+        }
+
         default:
             return state;
     }

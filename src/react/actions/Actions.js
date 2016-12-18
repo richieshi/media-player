@@ -24,5 +24,12 @@ export default {
         return {
             type: ActionNames.PLAY_PREV
         }
+    },
+
+    addNewSong: (videoId) => {
+        return {
+            type: ActionNames.ADD_NEW_SONG,
+            videoId: videoId
+        }
     }
 };

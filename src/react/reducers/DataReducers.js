@@ -19,6 +19,10 @@ export const playlist = (state = [], action) => {
             return ['pcKR0LPwoYs', '--zku6TB5NY', 'RwFi7wnH5W0'];
         }
 
+        case ActionNames.ADD_NEW_SONG: {
+            return state.concat(action.videoId);
+        }
+
         default:
             return state;
     }

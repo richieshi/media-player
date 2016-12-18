@@ -2,12 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Actions from '../actions/Actions.js';
 import FontAwesome from 'react-fontawesome';
-
-const Key = {
-    SPACE: 32,
-    n_KEY: 110,
-    p_KEY: 112
-}
+import { Key } from '../../constants/Constants.js';
 
 class MusicControls extends React.Component {
 
