@@ -2,7 +2,12 @@ import ActionNames from '../actions/ActionNames.js';
 
 const initialPlaylistSettings = {
     currentIndex: 0,
-    queuedMusic: ['pcKR0LPwoYs', '--zku6TB5NY', 'RwFi7wnH5W0']
+    queuedMusic: 
+        ['pcKR0LPwoYs', '--zku6TB5NY', 'RwFi7wnH5W0', 
+        'dImPgtJq1_A', 'iIPH8LFYFRk', 'y3CSu20OSHI', 
+        'GE_4RtpVVaw', 'acKYkaOYiWQ', 'yXAJIdyyZK4',
+        '4s-xd9O5ZQg', 'UbHVxe6D-Nw'],
+    isShuffled: false
 }
 
 // Fisher-Yates shuffle
@@ -16,8 +21,6 @@ function shuffle(arr) {
         arr[m] = arr[i];
         arr[i] = temp;
     }
-
-    console.log(arr);
 
     return arr;
 }
@@ -39,10 +42,9 @@ export const playlistSettings = (state = initialPlaylistSettings, action) => {
 
         case ActionNames.PLAY_NEXT: {
             let index = (state.currentIndex + 1) % state.queuedMusic.length
-            return {
-                currentIndex: index,
-                queuedMusic: state.queuedMusic
-            };
+            return Object.assign({}, state, {
+                currentIndex: index
+            });
         }
 
         case ActionNames.PLAY_PREV: {
@@ -50,24 +52,29 @@ export const playlistSettings = (state = initialPlaylistSettings, action) => {
             if (index === -1) {
                 index = state.queuedMusic.length - 1;
             }
-            return {
-                currentIndex: index,
-                queuedMusic: state.queuedMusic
-            };
+            return Object.assign({}, state, {
+                currentIndex: index
+            });
         }
 
         case ActionNames.ADD_NEW_SONG: {
-            return {
-                currentIndex: state.currentIndex,
+            return Object.assign({}, state, {
                 queuedMusic: state.queuedMusic.concat(action.videoId)
-            }
+            });
         }
 
         case ActionNames.SHUFFLE_SONGS: {
-            return {
+            let playlistSettings = { 
                 currentIndex: 0,
-                queuedMusic: shuffle(state.queuedMusic.slice())
+                isShuffled: !state.isShuffled
             };
+
+            if (state.isShuffled) {
+                playlistSettings.queuedMusic = action.playlist;
+            } else {
+                playlistSettings.queuedMusic = shuffle(state.queuedMusic.slice());
+            }
+            return playlistSettings;
         }
 
         default:

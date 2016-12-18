@@ -33,9 +33,10 @@ export default {
         }
     },
 
-    shuffleSongs: () => {
+    shuffleSongs: (playlist) => {
         return {
-            type: ActionNames.SHUFFLE_SONGS
+            type: ActionNames.SHUFFLE_SONGS,
+            playlist: playlist
         }
     }
 };
