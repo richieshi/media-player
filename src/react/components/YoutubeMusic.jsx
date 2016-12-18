@@ -7,9 +7,9 @@ import AddContainer from './AddContainer.jsx';
 class YoutubeMusic extends React.Component {
 
     render() {
-        const { playlist, playlistSettings } = this.props;
+        const { playlistSettings } = this.props;
         const { currentIndex, queuedMusic } = playlistSettings;
-        let playlistItems = playlist.map( ( song, i) => {
+        let playlistItems = queuedMusic.map( ( song, i) => {
             let isPlaying = (i == currentIndex);
             return (
                 <MusicListItem
@@ -32,7 +32,6 @@ class YoutubeMusic extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        playlist: state.playlist,
         playlistSettings: state.playlistSettings
     };
 };

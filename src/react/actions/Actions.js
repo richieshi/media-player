@@ -31,5 +31,11 @@ export default {
             type: ActionNames.ADD_NEW_SONG,
             videoId: videoId
         }
+    },
+
+    shuffleSongs: () => {
+        return {
+            type: ActionNames.SHUFFLE_SONGS
+        }
     }
 };

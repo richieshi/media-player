@@ -3,5 +3,6 @@ export default {
     SET_PLAY_CURRENT: 'setPlayCurrent',
     PLAY_NEXT: 'playNext',
     PLAY_PREV: 'playPrev',
-    ADD_NEW_SONG: 'addNewSong'
+    ADD_NEW_SONG: 'addNewSong',
+    SHUFFLE_SONGS: 'shuffleSongs'
 }

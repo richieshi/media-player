@@ -5,15 +5,19 @@ import { Key } from '../../constants/Constants.js';
 
 class AddContainer extends React.Component {
 
+    _bind(...handlers) {
+        handlers.forEach( handler => this[handler] = this[handler].bind(this));
+    }
+
     constructor() {
         super();
         this.state = {
             videoId: ''
         };
-        this._onKeyDown = this._onKeyDown.bind(this);
-        this._onAdd = this._onAdd.bind(this);
-        this._onChange = this._onChange.bind(this);
-        this._cancel = this._cancel.bind(this);
+        this._bind(
+            '_onKeyDown', '_onAdd', '_onChange',
+            '_cancel', '_clearTextbox', '_canAdd'
+        );
     }
 
     _onKeyDown(event) {
@@ -24,9 +28,18 @@ class AddContainer extends React.Component {
         }
     }
 
+    _clearTextbox() {
+        this.setState({
+            videoId: ''
+        });
+    }
+
     _onAdd() {
+        if (!this._canAdd()) {
+            return;
+        }
         this.props.onAddSong(this.state.videoId);
-        this._cancel();
+        this._clearTextbox();
     }
 
     _onChange(event) {
@@ -37,9 +50,11 @@ class AddContainer extends React.Component {
 
     _cancel() {
         this.refs.addTextbox.blur();
-        this.setState({
-            videoId: ''
-        });
+        this._clearTextbox();
+    }
+
+    _canAdd() {
+        return this.state.videoId.length > 0;
     }
     
     render() {

@@ -35,11 +35,11 @@ class MusicControls extends React.Component {
     }
 
     render() {
-        const { isPlaying, onPlay, onPause, playNext, playPrev } = this.props;
+        const { isPlaying, onPlay, onPause, playNext, playPrev, shuffleSongs } = this.props;
 
         let playBtn = ( 
             <div
-                id='control-btn'
+                className='control-btn'
                 onClick={onPlay}>
                 <FontAwesome
                     name='play-circle-o'
@@ -48,7 +48,7 @@ class MusicControls extends React.Component {
         );
         let pauseBtn = (
             <div
-                id='control-btn'
+                className='control-btn'
                 onClick={onPause}>
                 <FontAwesome
                     name='pause-circle-o'
@@ -57,7 +57,7 @@ class MusicControls extends React.Component {
         );
         let nextBtn = (
             <div
-                id='control-btn'
+                className='control-btn'
                 onClick={playNext}>
                 <FontAwesome
                     name='step-forward'
@@ -66,11 +66,20 @@ class MusicControls extends React.Component {
         );
         let prevBtn = (
             <div
-                id='control-btn'
+                className='control-btn'
                 onClick={playPrev}>
                 <FontAwesome
                     name='step-backward'
                     size='3x' />
+            </div>
+        );
+        let shuffleBtn = (
+            <div
+                className='secondary-btn'
+                onClick={shuffleSongs}>
+                <FontAwesome
+                    name='random'
+                    size='lg' />
             </div>
         );
 
@@ -79,6 +88,7 @@ class MusicControls extends React.Component {
                 {prevBtn}
                 {isPlaying ? pauseBtn : playBtn}
                 {nextBtn}
+                {shuffleBtn}
             </div>
         );
     }
@@ -103,6 +113,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         playPrev: () => {
             dispatch(Actions.playPrev());
+        },
+        shuffleSongs: () => {
+            dispatch(Actions.shuffleSongs());
         }
     }
 };

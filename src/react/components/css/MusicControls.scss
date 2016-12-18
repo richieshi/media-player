@@ -5,7 +5,7 @@
     height: 60px;
     box-sizing: content-box;
 
-    #control-btn {
+    .control-btn {
         display: inline-flex;
         margin-right: 50px;
         cursor: pointer;
@@ -13,5 +13,10 @@
         span {
             line-height: 60px;
         }
+    }
+
+    .secondary-btn {
+        display: inline-flex;
+        cursor: pointer;
     }
 }

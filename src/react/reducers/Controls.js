@@ -5,6 +5,23 @@ const initialPlaylistSettings = {
     queuedMusic: ['pcKR0LPwoYs', '--zku6TB5NY', 'RwFi7wnH5W0']
 }
 
+// Fisher-Yates shuffle
+function shuffle(arr) {
+    let m = arr.length;
+    let i, temp;
+
+    while (m) {
+        i = Math.floor(Math.random() * m--);
+        temp = arr[m];
+        arr[m] = arr[i];
+        arr[i] = temp;
+    }
+
+    console.log(arr);
+
+    return arr;
+}
+
 export const isPlaying = (state = false, action) => {
     switch(action.type) {
 
@@ -44,6 +61,13 @@ export const playlistSettings = (state = initialPlaylistSettings, action) => {
                 currentIndex: state.currentIndex,
                 queuedMusic: state.queuedMusic.concat(action.videoId)
             }
+        }
+
+        case ActionNames.SHUFFLE_SONGS: {
+            return {
+                currentIndex: 0,
+                queuedMusic: shuffle(state.queuedMusic.slice())
+            };
         }
 
         default:
