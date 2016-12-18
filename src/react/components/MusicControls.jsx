@@ -26,6 +26,7 @@ class MusicControls extends React.Component {
 
     _togglePlay(event) {
         if (event.keyCode === Key.SPACE) {
+            event.preventDefault();
             if (this.props.isPlaying) {
                 this.props.onPause();
             } else {

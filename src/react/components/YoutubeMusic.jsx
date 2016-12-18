@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import YoutubeMusicPlayer from './YoutubeMusicPlayer.jsx';
 import MusicListItem from './MusicListItem.jsx';
+import AddContainer from './AddContainer.jsx';
 
 class YoutubeMusic extends React.Component {
 
     render() {
-        let { playlist, queuedMusic, currentIndex } = this.props;
+        const { playlist, playlistSettings } = this.props;
+        const { currentIndex, queuedMusic } = playlistSettings;
         let playlistItems = playlist.map( ( song, i) => {
             let isPlaying = (i == currentIndex);
             return (
@@ -20,6 +22,7 @@ class YoutubeMusic extends React.Component {
         return (
             <div className='youtube-music'>
                 {playlistItems}
+                <AddContainer />
                 <YoutubeMusicPlayer
                     videoId={queuedMusic[currentIndex]} />
             </div>
@@ -30,8 +33,7 @@ class YoutubeMusic extends React.Component {
 const mapStateToProps = (state) => {
     return {
         playlist: state.playlist,
-        queuedMusic: state.queuedMusic,
-        currentIndex: state.currentIndex
+        playlistSettings: state.playlistSettings
     };
 };
 

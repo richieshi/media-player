@@ -3,16 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import App from './components/App.jsx'
-import Controls from './reducers/Controls.js';
-
+import Reducers from './reducers/Reducers';
 require('./index.scss')
-let store = createStore(Controls, {
-    isInit: false,
-    isPlaying: false,
-    playlist: [],
-    queuedMusic: [],
-    currentIndex: 0
-});
+
+let store = createStore(Reducers);
 
 render(
     <Provider store={store}>
