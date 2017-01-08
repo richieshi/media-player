@@ -15,7 +15,8 @@ DROP TABLE IF EXISTS music;
 CREATE TABLE IF NOT EXISTS music (
     user_id INT(10) NOT NULL,
     playlist_id INT(10) NOT NULL,
-    video_id VARCHAR(20) NOT NULL
+    video_id VARCHAR(20) NOT NULL,
+    id INT(10) NOT NULL AUTO_INCREMENT UNIQUE
 );
 
 -- create playlist table
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS music (
 INSERT INTO users VALUES (1, 'acc', MD5('sdfasdasdfa@f165648a'));
 
 -- insert test videoIds for music
-INSERT INTO music VALUES
+INSERT INTO music (user_id, playlist_id, video_id) VALUES
 (1, 1, 'pcKR0LPwoYs'),
 (1, 1, '--zku6TB5NY'),
 (1, 1, 'RwFi7wnH5W0'),
