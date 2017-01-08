@@ -51,3 +51,5 @@ jspm_packages
 .yarn-integrity
 
 venv/
+__pycache__/
+sql_info.txt
