@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Actions from '../actions/Actions.js';
 import { Key } from '../../constants/Constants.js';
+import jquery from 'jquery';
 
 class AddContainer extends React.Component {
 
@@ -78,7 +79,15 @@ class AddContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddSong: (videoId) => {
-            dispatch(Actions.addNewSong(videoId));
+            jquery.post(
+                'http://localhost:5000/playlist/1/1',
+                { video_id: videoId }
+            ).then(res => {
+                dispatch(Actions.addNewSong({
+                    video_id: res.video_id,
+                    id: res.id
+                }));
+            });
         }
     };
 };

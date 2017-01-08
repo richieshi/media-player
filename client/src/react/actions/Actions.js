@@ -34,10 +34,10 @@ export default {
         }
     },
 
-    addNewSong: (videoId) => {
+    addNewSong: (song) => {
         return {
             type: ActionNames.ADD_NEW_SONG,
-            videoId: videoId
+            song: song
         }
     },
 

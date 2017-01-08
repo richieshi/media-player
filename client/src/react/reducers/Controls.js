@@ -61,12 +61,12 @@ export const playlistSettings = (state = initialPlaylistSettings, action) => {
 
         case ActionNames.ADD_NEW_SONG: {
             return Object.assign({}, state, {
-                queuedMusic: state.queuedMusic.concat(action.videoId)
+                queuedMusic: state.queuedMusic.concat(action.song)
             });
         }
 
         case ActionNames.SHUFFLE_SONGS: {
-            let playlistSettings = { 
+            let playlistSettings = {
                 currentIndex: 0,
                 isShuffled: !state.isShuffled
             };
