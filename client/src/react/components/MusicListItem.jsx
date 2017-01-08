@@ -5,7 +5,7 @@ class MusicListItem extends React.Component {
 
     render() {
        
-        let { title, isPlaying } = this.props;
+        let { song, isPlaying } = this.props;
         let playingIcon;
         if ( isPlaying ) {
             playingIcon = <FontAwesome className='play-icon' name='music' size='lg' />
@@ -14,14 +14,14 @@ class MusicListItem extends React.Component {
         return (
             <div className='music-item'>
                 {playingIcon}
-                <span className='music-title'>{title}</span>
+                <span className='music-title'>{song.video_id}</span>
             </div>
         );
     }
 }
 
 MusicListItem.propTypes = {
-    title: React.PropTypes.string.isRequired,
+    song: React.PropTypes.object.isRequired,
     isPlaying: React.PropTypes.bool.isRequired
 }
 
