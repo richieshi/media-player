@@ -3,6 +3,7 @@ import YoutubeMusic from './YoutubeMusic.jsx';
 import MusicControls from './MusicControls.jsx';
 import Actions from '../actions/Actions.js';
 import { connect } from 'react-redux';
+import jquery from 'jquery';
 
 class App extends React.Component {
 
@@ -10,8 +11,15 @@ class App extends React.Component {
         this.props.init();
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        let { playlist } = nextProps;
+        if (playlist.isFetching !== this.props.playlist.isFetching) {
+            this.props.setQueuedMusic(playlist.music);
+        }
+    }
+
     render() {
-        if (!this.props.isInit) {
+        if (this.props.playlist.isFetching) {
             return null;
         }
         return (
@@ -29,14 +37,25 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isInit: state.isInit
+        playlist: state.playlist
    };
 };
 
 const mapDispatchToStore = (dispatch) => {
     return {
         init: () => {
-            dispatch(Actions.init());
+            jquery.get('http://localhost:5000/playlist/1/1')
+                .then((res) => {
+                    console.log('a');
+                    dispatch(Actions.init({
+                        isFetching: false,
+                        music: res.playlist
+                    }));
+                });
+        },
+
+        setQueuedMusic: (music) => {
+            dispatch(Actions.setQueuedMusic(music));
         }
     };
 }

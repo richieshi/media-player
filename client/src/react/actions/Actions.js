@@ -1,9 +1,17 @@
 import ActionNames from './ActionNames.js';
 
 export default {
-    init: () => {
+    init: (playlist) => {
         return {
-            type: ActionNames.INIT
+            type: ActionNames.INIT,
+            playlist: playlist
+        }
+    },
+
+    setQueuedMusic: (music) => {
+        return {
+            type: ActionNames.SET_QUEUED_MUSIC,
+            music: music
         }
     },
 
@@ -33,10 +41,10 @@ export default {
         }
     },
 
-    shuffleSongs: (playlist) => {
+    shuffleSongs: (music) => {
         return {
             type: ActionNames.SHUFFLE_SONGS,
-            playlist: playlist
+            music: music
         }
     }
 };

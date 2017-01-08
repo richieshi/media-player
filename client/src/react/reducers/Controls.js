@@ -2,11 +2,7 @@ import ActionNames from '../actions/ActionNames.js';
 
 const initialPlaylistSettings = {
     currentIndex: 0,
-    queuedMusic: 
-        ['pcKR0LPwoYs', '--zku6TB5NY', 'RwFi7wnH5W0', 
-        'dImPgtJq1_A', 'iIPH8LFYFRk', 'y3CSu20OSHI', 
-        'GE_4RtpVVaw', 'acKYkaOYiWQ', 'yXAJIdyyZK4',
-        '4s-xd9O5ZQg', 'UbHVxe6D-Nw'],
+    queuedMusic: [],
     isShuffled: false
 }
 
@@ -40,6 +36,12 @@ export const isPlaying = (state = false, action) => {
 export const playlistSettings = (state = initialPlaylistSettings, action) => {
     switch(action.type) {
 
+        case ActionNames.SET_QUEUED_MUSIC: {
+            return Object.assign({}, state, {
+                queuedMusic: action.music
+            });
+        }
+
         case ActionNames.PLAY_NEXT: {
             let index = (state.currentIndex + 1) % state.queuedMusic.length
             return Object.assign({}, state, {
@@ -70,7 +72,7 @@ export const playlistSettings = (state = initialPlaylistSettings, action) => {
             };
 
             if (state.isShuffled) {
-                playlistSettings.queuedMusic = action.playlist;
+                playlistSettings.queuedMusic = action.music;
             } else {
                 playlistSettings.queuedMusic = shuffle(state.queuedMusic.slice());
             }

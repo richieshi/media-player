@@ -14,7 +14,7 @@ class YoutubeMusic extends React.Component {
             return (
                 <MusicListItem
                     key={i}
-                    title={song}
+                    song={song}
                     isPlaying={isPlaying} />
             );
         });
@@ -24,7 +24,7 @@ class YoutubeMusic extends React.Component {
                 {playlistItems}
                 <AddContainer />
                 <YoutubeMusicPlayer
-                    videoId={queuedMusic[currentIndex]} />
+                    videoId={queuedMusic[currentIndex].video_id} />
             </div>
         );
     }

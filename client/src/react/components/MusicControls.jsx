@@ -40,6 +40,7 @@ class MusicControls extends React.Component {
             playNext, playPrev, shuffleSongs,
             playlist
         } = this.props;
+        let music = playlist.music;
 
         let playBtn = ( 
             <div
@@ -80,7 +81,7 @@ class MusicControls extends React.Component {
         let shuffleBtn = (
             <div
                 className='secondary-btn'
-                onClick={shuffleSongs.bind(null, playlist)}>
+                onClick={shuffleSongs.bind(null, music)}>
                 <FontAwesome
                     name='random'
                     size='lg' />
@@ -119,8 +120,8 @@ const mapDispatchToProps = (dispatch) => {
         playPrev: () => {
             dispatch(Actions.playPrev());
         },
-        shuffleSongs: (playlist) => {
-            dispatch(Actions.shuffleSongs(playlist));
+        shuffleSongs: (music) => {
+            dispatch(Actions.shuffleSongs(music));
         }
     }
 };
