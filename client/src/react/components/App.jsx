@@ -46,7 +46,6 @@ const mapDispatchToStore = (dispatch) => {
         init: () => {
             jquery.get('http://localhost:5000/playlist/1/1')
                 .then((res) => {
-                    console.log('a');
                     dispatch(Actions.init({
                         isFetching: false,
                         music: res.playlist
